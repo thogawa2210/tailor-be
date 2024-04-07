@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fabric_brands",
+  "info": {
+    "singularName": "fabric-brand",
+    "pluralName": "fabric-brands",
+    "displayName": "Fabric Brand"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "website": {
+      "type": "string",
+      "unique": true
+    },
+    "origin_country": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::country.country",
+      "inversedBy": "fabric_brands"
+    },
+    "supplier": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::supplier.supplier",
+      "inversedBy": "fabric_brands"
+    }
+  }
+}

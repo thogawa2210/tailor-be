@@ -15,6 +15,18 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "cities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::city.city",
+      "mappedBy": "country_id"
+    },
+    "fabric_brands": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::fabric-brand.fabric-brand",
+      "mappedBy": "origin_country"
     }
   }
 }
