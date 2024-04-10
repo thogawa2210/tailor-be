@@ -4,7 +4,8 @@
   "info": {
     "singularName": "country",
     "pluralName": "countries",
-    "displayName": "Country"
+    "displayName": "Country",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -27,6 +28,21 @@
       "relation": "oneToMany",
       "target": "api::fabric-brand.fabric-brand",
       "mappedBy": "origin_country"
+    },
+    "googleMap": {
+      "type": "string"
+    },
+    "population": {
+      "type": "integer"
+    },
+    "area": {
+      "type": "decimal"
+    },
+    "capital": {
+      "type": "string"
+    },
+    "flag": {
+      "type": "string"
     }
   }
 }

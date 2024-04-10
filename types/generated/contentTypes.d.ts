@@ -864,6 +864,7 @@ export interface ApiCountryCountry extends Schema.CollectionType {
     singularName: 'country';
     pluralName: 'countries';
     displayName: 'Country';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -880,6 +881,11 @@ export interface ApiCountryCountry extends Schema.CollectionType {
       'oneToMany',
       'api::fabric-brand.fabric-brand'
     >;
+    googleMap: Attribute.String;
+    population: Attribute.Integer;
+    area: Attribute.Decimal;
+    capital: Attribute.String;
+    flag: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
