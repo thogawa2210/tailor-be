@@ -4,7 +4,8 @@
   "info": {
     "singularName": "fabric-brand",
     "pluralName": "fabric-brands",
-    "displayName": "Fabric Brand"
+    "displayName": "Fabric Brand",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -31,6 +32,9 @@
       "relation": "manyToOne",
       "target": "api::supplier.supplier",
       "inversedBy": "fabric_brands"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

@@ -910,6 +910,7 @@ export interface ApiFabricBrandFabricBrand extends Schema.CollectionType {
     singularName: 'fabric-brand';
     pluralName: 'fabric-brands';
     displayName: 'Fabric Brand';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -927,6 +928,7 @@ export interface ApiFabricBrandFabricBrand extends Schema.CollectionType {
       'manyToOne',
       'api::supplier.supplier'
     >;
+    description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
