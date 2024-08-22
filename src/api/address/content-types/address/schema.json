@@ -27,6 +27,12 @@
       "relation": "manyToOne",
       "target": "api::city.city",
       "inversedBy": "addresses"
+    },
+    "customers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::customer.customer",
+      "mappedBy": "address"
     }
   }
 }

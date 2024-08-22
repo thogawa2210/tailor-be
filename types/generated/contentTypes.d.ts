@@ -808,6 +808,11 @@ export interface ApiAddressAddress extends Schema.CollectionType {
       'manyToOne',
       'api::city.city'
     >;
+    customers: Attribute.Relation<
+      'api::address.address',
+      'oneToMany',
+      'api::customer.customer'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -904,6 +909,49 @@ export interface ApiCountryCountry extends Schema.CollectionType {
   };
 }
 
+export interface ApiCustomerCustomer extends Schema.CollectionType {
+  collectionName: 'customers';
+  info: {
+    singularName: 'customer';
+    pluralName: 'customers';
+    displayName: 'Customer';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    fullName: Attribute.String & Attribute.Required;
+    phoneNumber: Attribute.String & Attribute.Required & Attribute.Unique;
+    address: Attribute.Relation<
+      'api::customer.customer',
+      'manyToOne',
+      'api::address.address'
+    >;
+    description: Attribute.Text;
+    email: Attribute.Email;
+    dob: Attribute.Date;
+    measurement: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'api::measurement.measurement'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiFabricBrandFabricBrand extends Schema.CollectionType {
   collectionName: 'fabric_brands';
   info: {
@@ -940,6 +988,54 @@ export interface ApiFabricBrandFabricBrand extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::fabric-brand.fabric-brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMeasurementMeasurement extends Schema.CollectionType {
+  collectionName: 'measurements';
+  info: {
+    singularName: 'measurement';
+    pluralName: 'measurements';
+    displayName: 'Measurement';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    customer: Attribute.Relation<
+      'api::measurement.measurement',
+      'oneToOne',
+      'api::customer.customer'
+    >;
+    jacketLength: Attribute.Decimal;
+    trousersLength: Attribute.Decimal;
+    shoulder: Attribute.Decimal;
+    shoulderSlope: Attribute.Decimal;
+    chest: Attribute.Decimal;
+    waist: Attribute.Decimal;
+    hip: Attribute.Decimal;
+    crotch: Attribute.Decimal;
+    waistband: Attribute.Decimal;
+    thigh: Attribute.Decimal;
+    calf: Attribute.Decimal;
+    arm: Attribute.Decimal;
+    neck: Attribute.Decimal;
+    bicep: Attribute.Decimal;
+    armhole: Attribute.Decimal;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::measurement.measurement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::measurement.measurement',
       'oneToOne',
       'admin::user'
     > &
@@ -1008,7 +1104,9 @@ declare module '@strapi/types' {
       'api::address.address': ApiAddressAddress;
       'api::city.city': ApiCityCity;
       'api::country.country': ApiCountryCountry;
+      'api::customer.customer': ApiCustomerCustomer;
       'api::fabric-brand.fabric-brand': ApiFabricBrandFabricBrand;
+      'api::measurement.measurement': ApiMeasurementMeasurement;
       'api::supplier.supplier': ApiSupplierSupplier;
     }
   }

@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "measurements",
+  "info": {
+    "singularName": "measurement",
+    "pluralName": "measurements",
+    "displayName": "Measurement"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "customer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "measurement"
+    },
+    "jacketLength": {
+      "type": "decimal"
+    },
+    "trousersLength": {
+      "type": "decimal"
+    },
+    "shoulder": {
+      "type": "decimal"
+    },
+    "shoulderSlope": {
+      "type": "decimal"
+    },
+    "chest": {
+      "type": "decimal"
+    },
+    "waist": {
+      "type": "decimal"
+    },
+    "hip": {
+      "type": "decimal"
+    },
+    "crotch": {
+      "type": "decimal"
+    },
+    "waistband": {
+      "type": "decimal"
+    },
+    "thigh": {
+      "type": "decimal"
+    },
+    "calf": {
+      "type": "decimal"
+    },
+    "arm": {
+      "type": "decimal"
+    },
+    "neck": {
+      "type": "decimal"
+    },
+    "bicep": {
+      "type": "decimal"
+    },
+    "armhole": {
+      "type": "decimal"
+    }
+  }
+}
