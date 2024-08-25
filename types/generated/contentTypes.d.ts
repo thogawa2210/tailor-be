@@ -935,6 +935,11 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'oneToOne',
       'api::measurement.measurement'
     >;
+    fabric_order_details: Attribute.Relation<
+      'api::customer.customer',
+      'oneToMany',
+      'api::fabric-order-detail.fabric-order-detail'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -977,6 +982,11 @@ export interface ApiFabricBrandFabricBrand extends Schema.CollectionType {
       'api::supplier.supplier'
     >;
     description: Attribute.Text;
+    fabric_order_details: Attribute.Relation<
+      'api::fabric-brand.fabric-brand',
+      'oneToMany',
+      'api::fabric-order-detail.fabric-order-detail'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -988,6 +998,94 @@ export interface ApiFabricBrandFabricBrand extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::fabric-brand.fabric-brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFabricOrderFabricOrder extends Schema.CollectionType {
+  collectionName: 'fabric_orders';
+  info: {
+    singularName: 'fabric-order';
+    pluralName: 'fabric-orders';
+    displayName: 'Fabric Order';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    note: Attribute.String;
+    fabric_order_details: Attribute.Relation<
+      'api::fabric-order.fabric-order',
+      'oneToMany',
+      'api::fabric-order-detail.fabric-order-detail'
+    >;
+    supplier: Attribute.Relation<
+      'api::fabric-order.fabric-order',
+      'manyToOne',
+      'api::supplier.supplier'
+    >;
+    sentDate: Attribute.Date;
+    receivedDate: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::fabric-order.fabric-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::fabric-order.fabric-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFabricOrderDetailFabricOrderDetail
+  extends Schema.CollectionType {
+  collectionName: 'fabric_order_details';
+  info: {
+    singularName: 'fabric-order-detail';
+    pluralName: 'fabric-order-details';
+    displayName: 'Fabric Order Detail';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    fabricCode: Attribute.String & Attribute.Required;
+    quantity: Attribute.Decimal & Attribute.Required;
+    fabric_brand: Attribute.Relation<
+      'api::fabric-order-detail.fabric-order-detail',
+      'manyToOne',
+      'api::fabric-brand.fabric-brand'
+    >;
+    customer: Attribute.Relation<
+      'api::fabric-order-detail.fabric-order-detail',
+      'manyToOne',
+      'api::customer.customer'
+    >;
+    note: Attribute.Text;
+    fabric_order: Attribute.Relation<
+      'api::fabric-order-detail.fabric-order-detail',
+      'manyToOne',
+      'api::fabric-order.fabric-order'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::fabric-order-detail.fabric-order-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::fabric-order-detail.fabric-order-detail',
       'oneToOne',
       'admin::user'
     > &
@@ -1065,6 +1163,11 @@ export interface ApiSupplierSupplier extends Schema.CollectionType {
       'oneToMany',
       'api::fabric-brand.fabric-brand'
     >;
+    fabric_orders: Attribute.Relation<
+      'api::supplier.supplier',
+      'oneToMany',
+      'api::fabric-order.fabric-order'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1106,6 +1209,8 @@ declare module '@strapi/types' {
       'api::country.country': ApiCountryCountry;
       'api::customer.customer': ApiCustomerCustomer;
       'api::fabric-brand.fabric-brand': ApiFabricBrandFabricBrand;
+      'api::fabric-order.fabric-order': ApiFabricOrderFabricOrder;
+      'api::fabric-order-detail.fabric-order-detail': ApiFabricOrderDetailFabricOrderDetail;
       'api::measurement.measurement': ApiMeasurementMeasurement;
       'api::supplier.supplier': ApiSupplierSupplier;
     }

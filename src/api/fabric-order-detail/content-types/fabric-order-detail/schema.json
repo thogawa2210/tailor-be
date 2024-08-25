@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fabric_order_details",
+  "info": {
+    "singularName": "fabric-order-detail",
+    "pluralName": "fabric-order-details",
+    "displayName": "Fabric Order Detail"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fabricCode": {
+      "type": "string",
+      "required": true
+    },
+    "quantity": {
+      "type": "decimal",
+      "required": true
+    },
+    "fabric_brand": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::fabric-brand.fabric-brand",
+      "inversedBy": "fabric_order_details"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "fabric_order_details"
+    },
+    "note": {
+      "type": "text"
+    },
+    "fabric_order": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::fabric-order.fabric-order",
+      "inversedBy": "fabric_order_details"
+    }
+  }
+}

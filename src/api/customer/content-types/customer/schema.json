@@ -40,6 +40,12 @@
       "relation": "oneToOne",
       "target": "api::measurement.measurement",
       "mappedBy": "customer"
+    },
+    "fabric_order_details": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::fabric-order-detail.fabric-order-detail",
+      "mappedBy": "customer"
     }
   }
 }

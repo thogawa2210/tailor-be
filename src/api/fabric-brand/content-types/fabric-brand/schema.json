@@ -35,6 +35,12 @@
     },
     "description": {
       "type": "text"
+    },
+    "fabric_order_details": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::fabric-order-detail.fabric-order-detail",
+      "mappedBy": "fabric_brand"
     }
   }
 }

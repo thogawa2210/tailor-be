@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fabric_orders",
+  "info": {
+    "singularName": "fabric-order",
+    "pluralName": "fabric-orders",
+    "displayName": "Fabric Order"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "note": {
+      "type": "string"
+    },
+    "fabric_order_details": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::fabric-order-detail.fabric-order-detail",
+      "mappedBy": "fabric_order"
+    },
+    "supplier": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::supplier.supplier",
+      "inversedBy": "fabric_orders"
+    },
+    "sentDate": {
+      "type": "date"
+    },
+    "receivedDate": {
+      "type": "date"
+    }
+  }
+}

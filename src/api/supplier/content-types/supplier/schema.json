@@ -37,6 +37,12 @@
       "relation": "oneToMany",
       "target": "api::fabric-brand.fabric-brand",
       "mappedBy": "supplier"
+    },
+    "fabric_orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::fabric-order.fabric-order",
+      "mappedBy": "supplier"
     }
   }
 }
