@@ -987,6 +987,7 @@ export interface ApiFabricBrandFabricBrand extends Schema.CollectionType {
       'oneToMany',
       'api::fabric-order-detail.fabric-order-detail'
     >;
+    logo: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

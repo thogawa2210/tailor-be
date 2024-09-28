@@ -41,6 +41,14 @@
       "relation": "oneToMany",
       "target": "api::fabric-order-detail.fabric-order-detail",
       "mappedBy": "fabric_brand"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }
